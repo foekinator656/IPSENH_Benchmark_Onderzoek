@@ -4,14 +4,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogFile {
-    public void fileWriter (String testResult){
+    static FileWriter myWriter;
+    public static void fileWriter(String testResult){
         LocalDateTime now = LocalDateTime.now();
+        String date = now.getYear()+"_"+now.getMonth()+"_"+now.getDayOfWeek();
         try {
-            FileWriter myWriter = new FileWriter("Benchmark_IPSENH"+"_"+now+".txt");
-            myWriter.write(testResult);
+            myWriter = new FileWriter("Benchmark_IPSENH"+"_"+date+".txt");
+            myWriter.append(testResult);
+            myWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
     }
+
+
 }
