@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,17 +10,24 @@ public class Main {
         System.out.println(dtf.format(startBenchmark));
 
         ArrayGenerator arrayGenerator = new ArrayGenerator();
+        int i= 0;
+        do {
+            LocalDateTime startSelectionSortBenchmark = LocalDateTime.now();
+            logString = logString + "Start SelectionSort Benchmark!"+"("+i+") "+startSelectionSortBenchmark+"!\n";
+            System.out.println(dtf.format(startSelectionSortBenchmark));
+            runSelectionSort(arrayGenerator);
+            i++;
+        } while (i <= 1000);
 
-        LocalDateTime startSelectionSortBenchmark = LocalDateTime.now();
-        logString = logString + "Start SelectionSort Benchmark!  "+startSelectionSortBenchmark+"!\n";
-        System.out.println(dtf.format(startSelectionSortBenchmark));
-        runSelectionSort(arrayGenerator);
+        i=0;
+        do {
+            LocalDateTime startBubbleSort = LocalDateTime.now();
+            logString = logString + "Start BubbleSort Benchmark!"+"("+i+") "+startBubbleSort+"!\n";
+            System.out.println(dtf.format(startBubbleSort));
+            runBubbleSort(arrayGenerator);
+            i++;
+        } while (i <= 1000);
 
-
-        LocalDateTime startBubbleSort = LocalDateTime.now();
-        logString = logString + "Start BubbleSort Benchmark!  "+startBubbleSort+"!\n";
-        System.out.println(dtf.format(startBubbleSort));
-        runBubbleSort(arrayGenerator);
 
         LocalDateTime endBenchmark = LocalDateTime.now();
         System.out.println(dtf.format(endBenchmark));
@@ -52,22 +60,26 @@ public class Main {
 
     public static void runSelectionSort(ArrayGenerator arrayGenerator){
         SelectionSort selectionSort = new SelectionSort();
-        selectionSort.sort(arrayGenerator.hundredNumbersLongList);
-        selectionSort.sort(arrayGenerator.thousandNumbersLongList);
-        selectionSort.sort(arrayGenerator.tenThousandNumbersLongList);
-        selectionSort.sort(arrayGenerator.hundredThousandNumbersLongList);
+        ArrayList<Long> tempArray = arrayGenerator.hundredNumbersLongList;
+        selectionSort.sort(tempArray);
+        tempArray = arrayGenerator.thousandNumbersLongList;
+        selectionSort.sort(tempArray);
+        tempArray = arrayGenerator.tenThousandNumbersLongList;
+        selectionSort.sort(tempArray);
+        tempArray = arrayGenerator.hundredThousandNumbersLongList;
+        selectionSort.sort(tempArray);
     }
 
     public static void runBubbleSort(ArrayGenerator arrayGenerator){
         BubbleSort bubbleSort = new BubbleSort();
-
-        bubbleSort.bubbleSortWithSwapCounter(arrayGenerator.hundredNumbersLongList);
-
-        bubbleSort.bubbleSortWithSwapCounter(arrayGenerator.thousandNumbersLongList);
-
-        bubbleSort.bubbleSortWithSwapCounter(arrayGenerator.tenThousandNumbersLongList);
-
-        bubbleSort.bubbleSortWithSwapCounter(arrayGenerator.hundredThousandNumbersLongList);
+        ArrayList<Long> tempArray = arrayGenerator.hundredNumbersLongList;
+        bubbleSort.bubbleSortWithSwapCounter(tempArray);
+        tempArray = arrayGenerator.thousandNumbersLongList;
+        bubbleSort.bubbleSortWithSwapCounter(tempArray);
+        tempArray = arrayGenerator.tenThousandNumbersLongList;
+        bubbleSort.bubbleSortWithSwapCounter(tempArray);
+        tempArray = arrayGenerator.hundredThousandNumbersLongList;
+        bubbleSort.bubbleSortWithSwapCounter(tempArray);
 
     }
 
