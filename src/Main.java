@@ -8,11 +8,49 @@ import java.time.format.DateTimeFormatter;
 import static SortAlg.BubbleSort.run;
 
 public class Main {
+
+    public static String runSelectBS(String logString, ArrayGenerator arrayGenerator, DateTimeFormatter dtf) {
+        int i = 0;
+        do {
+            LocalDateTime begin = LocalDateTime.now();
+            logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.SelectionSort Benchmark!\n",
+                    ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
+                    begin.getMinute(), begin.getSecond());
+            System.out.println(dtf.format(begin));
+            SelectionSort.run(arrayGenerator);
+            LocalDateTime eind = LocalDateTime.now();
+            i++;
+            System.out.println(eind + "\n");
+            System.out.println("De compared tijd is als volgt: ");
+            Time.getTotalTimeNow(begin, eind);
+            System.out.println("===================================");
+        } while (i <= 4);
+        // TODO: Change value to <= 4
+        return logString;
+    }
+
+    public static String runBubbleBS(String logString, ArrayGenerator arrayGenerator, DateTimeFormatter dtf) {
+        int i = 0;
+        do {
+            LocalDateTime begin = LocalDateTime.now();
+            logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.BubbleSort Benchmark!\n",
+                    ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
+                    begin.getMinute(), begin.getSecond());
+            System.out.println(dtf.format(begin));
+            run(arrayGenerator);
+            i++;
+        } while (i <= 4);
+        // TODO: Change value to <= 4
+        return logString;
+    }
+
     public static void main(String[] args) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
+        ArrayGenerator arrayGenerator = new ArrayGenerator();
         LocalDateTime startBenchmark = LocalDateTime.now();
-        String logString = "Start benchmark! at: " + startBenchmark + "!\n";
-        System.out.println(dtf.format(startBenchmark));
+        String logString = String.format("(%s/%s/%s %s:%s:%S): Benchmarking starting...!\n\n", startBenchmark.getYear(),
+                startBenchmark.getMonthValue(), startBenchmark.getDayOfMonth(), startBenchmark.getHour(),
+                startBenchmark.getMinute(), startBenchmark.getSecond());
 
         arrayGenerator.fillHundredNumbers();
         arrayGenerator.fillThousandNumbers();
@@ -25,55 +63,8 @@ public class Main {
         LocalDateTime endBenchmark = LocalDateTime.now();
         System.out.println(dtf.format(endBenchmark));
 
-        logString = logString + "Total time of benchmark is: " + compareTime(startBenchmark,endBenchmark) +"!\n";
+        logString = logString + "Total time of benchmark is: " + Time.getTotalTimeNow(startBenchmark, endBenchmark) + "!\n";
 
         LogFile.fileWriter(logString);
     }
-
-    public static String compareTime(LocalDateTime start, LocalDateTime end){
-        int startHour = start.getHour();
-        int endHour = end.getHour();
-        int benchHour = endHour-startHour;
-
-
-        int startMin = start.getMinute();
-        int endMin = end.getMinute();
-        int benchMin = endMin-startMin;
-        if (benchMin < 0) benchMin = (endMin+60) - startMin;
-
-        int startSec = start.getSecond();
-        int endSec = end.getSecond();
-        int benchSec = endSec - startSec;
-        if (benchSec < 0) benchSec = (endSec+60) - startSec;
-
-        String totalTime = benchHour + " uur, " + benchMin + " min, " + benchSec + "sec";
-        System.out.println(totalTime);
-        return totalTime;
-    }
-
-    public static void runSelectionSort(ArrayGenerator arrayGenerator){
-        SelectionSort selectionSort = new SelectionSort();
-        ArrayList<Long> tempArray = arrayGenerator.hundredNumbersLongList;
-        selectionSort.sort(tempArray);
-        tempArray = arrayGenerator.thousandNumbersLongList;
-        selectionSort.sort(tempArray);
-        tempArray = arrayGenerator.tenThousandNumbersLongList;
-        selectionSort.sort(tempArray);
-        tempArray = arrayGenerator.hundredThousandNumbersLongList;
-        selectionSort.sort(tempArray);
-    }
-
-    public static void runBubbleSort(ArrayGenerator arrayGenerator){
-        BubbleSort bubbleSort = new BubbleSort();
-        ArrayList<Long> tempArray = arrayGenerator.hundredNumbersLongList;
-        bubbleSort.bubbleSortWithSwapCounter(tempArray);
-        tempArray = arrayGenerator.thousandNumbersLongList;
-        bubbleSort.bubbleSortWithSwapCounter(tempArray);
-        tempArray = arrayGenerator.tenThousandNumbersLongList;
-        bubbleSort.bubbleSortWithSwapCounter(tempArray);
-        tempArray = arrayGenerator.hundredThousandNumbersLongList;
-        bubbleSort.bubbleSortWithSwapCounter(tempArray);
-
-    }
-
 }

@@ -6,7 +6,7 @@ public class BubbleSort {
 
     public static void sort(ArrayList<Long> arr){
         int n = arr.size();
-        int i,j;
+        int i, j;
         int swapCounter = -1;
         while (swapCounter != 0) {
             swapCounter = 0;
