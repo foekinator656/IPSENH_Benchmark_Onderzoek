@@ -1,0 +1,14 @@
+(2023/3/6 22:36:52): Benchmarking starting...!
+
+(0: 2023/3/6 22:36:52): Start SortAlg.SelectionSort Benchmark!
+(1: 2023/3/6 22:37:0): Start SortAlg.SelectionSort Benchmark!
+(2: 2023/3/6 22:37:9): Start SortAlg.SelectionSort Benchmark!
+(3: 2023/3/6 22:37:18): Start SortAlg.SelectionSort Benchmark!
+(4: 2023/3/6 22:37:27): Start SortAlg.SelectionSort Benchmark!
+(0: 2023/3/6 22:37:36): Start SortAlg.BubbleSort Benchmark!
+(1: 2023/3/6 22:37:45): Start SortAlg.BubbleSort Benchmark!
+(2: 2023/3/6 22:37:54): Start SortAlg.BubbleSort Benchmark!
+(3: 2023/3/6 22:38:3): Start SortAlg.BubbleSort Benchmark!
+(4: 2023/3/6 22:38:12): Start SortAlg.BubbleSort Benchmark!
+Total time of benchmark is: 0 uur, 2 minuten, 28 seconden!
+Average time is the following: 8.8
