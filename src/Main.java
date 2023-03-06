@@ -1,4 +1,5 @@
 import SortAlg.ArrayGenerator;
+import SortAlg.BubbleSort;
 import SortAlg.SelectionSort;
 import Time.Time;
 
@@ -37,8 +38,13 @@ public class Main {
                     ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
                     begin.getMinute(), begin.getSecond());
             System.out.println(dtf.format(begin));
-            run(arrayGenerator);
+            BubbleSort.run(arrayGenerator);
+            LocalDateTime eind = LocalDateTime.now();
             i++;
+            System.out.println(eind + "\n");
+            System.out.println("De compared tijd is als volgt: ");
+            Time.getTotalTimeNow(begin, eind);
+            System.out.println("===================================");
         } while (i <= 4);
         // TODO: Change value to <= 4
         return logString;
@@ -61,10 +67,14 @@ public class Main {
         logString = runBubbleBS(logString, arrayGenerator, dtf);
 
         LocalDateTime endBenchmark = LocalDateTime.now();
-        System.out.println(dtf.format(endBenchmark));
+
+        System.out.println("The format of the end of the benchmark is: " + dtf.format(endBenchmark) + "\n");
 
         logString = logString + "Total time of benchmark is: " + Time.getTotalTimeNow(startBenchmark, endBenchmark) + "!\n";
 
+        logString = logString + "Average time is the following: " + Time.getAverageTime() + "\n";
+
         LogFile.fileWriter(logString);
+
     }
 }

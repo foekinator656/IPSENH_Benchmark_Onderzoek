@@ -4,25 +4,24 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Time {
+    public static ArrayList<Integer> integers = new ArrayList<>();
 
-//    public static totalTime(int[] values) {
-//
-//    }
+    public static String getAverageTime() {
+        float total = 0;
 
-    public static int getTotalTime(int[] values) {
-        int value = 0;
+        System.out.println(integers);
+        integers.remove(integers.size() - 1);
+        System.out.println(integers);
 
-        for (int actualValue : values) {
-            value = value + actualValue;
+        for (int integer : integers) {
+            System.out.printf("Value of second in the bench mark is as follows: %s\n", integer);
+            total = total + integer;
         }
 
-        return value;
-    }
+        float avg = total / (integers.size());
 
-    public static String getAverageTime(LocalDateTime start, LocalDateTime end) {
-//        int totalTime = getTotalTime(start, end);
-
-        return "Total time is returned";
+        System.out.println("Average time is as follows: " + avg);
+        return String.valueOf(avg);
     }
 
     public static String getTotalTimeNow(LocalDateTime start, LocalDateTime end){
@@ -53,7 +52,7 @@ public class Time {
 //        int startSec = start.getSecond();
 //        int endSec = end.getSecond();
 //        int benchSec = endSec - startSec;
-////        if (benchSec < 0) benchSec = (endSec + 60) - startSec;
+//        if (benchSec < 0) benchSec = (endSec + 60) - startSec;
 //
 //        String totalTime = benchHour + " uur, " + benchMin + " min, " + benchSec + "sec";
 //        System.out.println(totalTime);
