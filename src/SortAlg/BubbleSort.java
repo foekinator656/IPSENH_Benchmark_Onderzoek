@@ -1,7 +1,10 @@
+package SortAlg;
+
 import java.util.ArrayList;
 
 public class BubbleSort {
-    void bubbleSortWithSwapCounter(ArrayList<Long> arr){
+
+    public static void sort(ArrayList<Long> arr){
         int n = arr.size();
         int i,j;
         int swapCounter = -1;
@@ -22,25 +25,14 @@ public class BubbleSort {
         }
     }
 
-    /* Prints the array */
-    void printArray(ArrayList<Long> arr) {
-        for (Long j : arr) {
-            System.out.print(j + " ");
-        }
-        System.out.println();
+    public static void run(ArrayGenerator arrayGenerator) {
+        ArrayList<Long> tempArray = arrayGenerator.hundredNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.thousandNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.tenThousandNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.hundredThousandNumbers;
+        sort(tempArray);
     }
-//
-//    // Driver method to test above
-//    public static void main(String args[])    {
-//        BubbleSort bs = new BubbleSort();
-//        int arr1[] = {64, 34, 25, 12, 22, 11, 90};
-//        int arr2[] = {8, 4, 6, 3, 1, 7, 2};
-//        System.out.println("array1 ongesorteerd = " );
-//        bs.printArray(arr1);
-//        bs.bubbleSortWithSwapCounter(arr1);
-//        System.out.println("arr1 gesorteerd = ");
-//        bs.printArray(arr1);
-//
-//    }
-
 }

@@ -1,4 +1,0 @@
-Start benchmark! at: 2023-02-22T16:29:56.454313700!
-Start SelectionSort Benchmark!  2023-02-22T16:29:56.473318400!
-Start BubbleSort Benchmark!  2023-02-22T16:30:04.267410700!
-Total time of benchmark is: 0 uur, 1 min, 17sec!

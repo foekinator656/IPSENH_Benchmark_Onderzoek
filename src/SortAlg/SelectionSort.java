@@ -1,7 +1,10 @@
+package SortAlg;
+
 import java.util.ArrayList;
 
 public class SelectionSort {
-    void sort(ArrayList<Long> arr){
+
+    public static void sort(ArrayList<Long> arr){
         int n = arr.size();
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n-1; i++){
@@ -18,19 +21,14 @@ public class SelectionSort {
         }
     }
 
-    // Prints the array
-    void printArray(ArrayList<Long> arr){
-        for (Long aLong : arr) {
-            System.out.print(aLong + " ");
-        }
-        System.out.println();
+    public static void run(ArrayGenerator arrayGenerator) {
+        ArrayList<Long> tempArray = arrayGenerator.hundredNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.thousandNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.tenThousandNumbers;
+        sort(tempArray);
+        tempArray = arrayGenerator.hundredThousandNumbers;
+        sort(tempArray);
     }
-
-
-    // Driver code to test above
-//    public static void main(String args[]){
-//        SelectionSort ob = new SelectionSort();
-//        ob.sort(arr);
-//        ob.printArray(arr);
-//    }
 }

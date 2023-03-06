@@ -1,6 +1,11 @@
+import SortAlg.ArrayGenerator;
+import SortAlg.SelectionSort;
+import Time.Time;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+import static SortAlg.BubbleSort.run;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,25 +14,13 @@ public class Main {
         String logString = "Start benchmark! at: " + startBenchmark + "!\n";
         System.out.println(dtf.format(startBenchmark));
 
-        ArrayGenerator arrayGenerator = new ArrayGenerator();
-        int i= 0;
-        do {
-            LocalDateTime startSelectionSortBenchmark = LocalDateTime.now();
-            logString = logString + "Start SelectionSort Benchmark!"+"("+i+") "+startSelectionSortBenchmark+"!\n";
-            System.out.println(dtf.format(startSelectionSortBenchmark));
-            runSelectionSort(arrayGenerator);
-            i++;
-        } while (i <= 1000);
+        arrayGenerator.fillHundredNumbers();
+        arrayGenerator.fillThousandNumbers();
+        arrayGenerator.fillTenThousandNumbers();
+        arrayGenerator.fillHundredThousandNumbers();
 
-        i=0;
-        do {
-            LocalDateTime startBubbleSort = LocalDateTime.now();
-            logString = logString + "Start BubbleSort Benchmark!"+"("+i+") "+startBubbleSort+"!\n";
-            System.out.println(dtf.format(startBubbleSort));
-            runBubbleSort(arrayGenerator);
-            i++;
-        } while (i <= 1000);
-
+        logString = runSelectBS(logString, arrayGenerator, dtf);
+        logString = runBubbleBS(logString, arrayGenerator, dtf);
 
         LocalDateTime endBenchmark = LocalDateTime.now();
         System.out.println(dtf.format(endBenchmark));
