@@ -1,5 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 public class LogFile {
@@ -9,7 +11,8 @@ public class LogFile {
     public static void fileWriter(String testResult){
         LocalDateTime now = LocalDateTime.now();
         String date = String.format("%s_%s_%s", now.getYear(), now.getMonthValue(), now.getDayOfMonth());
-
+        String fileName = String.format("Benchmark_IPSENH_%s.txt", date);
+        int value = 0;
         try {
             myWriter = new FileWriter(String.format("Benchmark_IPSENH_%s.txt", date));
             myWriter.append(testResult);

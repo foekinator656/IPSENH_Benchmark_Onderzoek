@@ -1,0 +1,6 @@
+(2023/3/11 12:29:38): Benchmarking starting...!
+
+(0: 2023/3/11 12:29:38): Start SortAlg.SelectionSort Benchmark!
+(0: 2023/3/11 12:29:46): Start SortAlg.BubbleSort Benchmark!
+Total time of benchmark is: 0 uur, 0 minuten, 17.0 seconden!
+Average time is the following: 8.5

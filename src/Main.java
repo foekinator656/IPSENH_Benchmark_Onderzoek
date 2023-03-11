@@ -15,14 +15,11 @@ public class Main {
             logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.SelectionSort Benchmark!\n",
                     ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
                     begin.getMinute(), begin.getSecond());
-            System.out.println(dtf.format(begin));
             SelectionSort.run(arrayGenerator);
             LocalDateTime eind = LocalDateTime.now();
             i++;
-            System.out.println(eind + "\n");
-            System.out.println("De compared tijd is als volgt: ");
-            Time.getTotalTimeNow(begin, eind);
-            System.out.println("===================================");
+            Time.setValuesIntoIntegerList(begin, eind);
+            System.out.println("SelectionSort: " + Time.getTotalTimeNow());
         } while (i <= 4);
         // TODO: Change value to <= 4
         return logString;
@@ -35,14 +32,11 @@ public class Main {
             logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.BubbleSort Benchmark!\n",
                     ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
                     begin.getMinute(), begin.getSecond());
-            System.out.println(dtf.format(begin));
             BubbleSort.run(arrayGenerator);
             LocalDateTime eind = LocalDateTime.now();
             i++;
-            System.out.println(eind + "\n");
-            System.out.println("De compared tijd is als volgt: ");
-            Time.getTotalTimeNow(begin, eind);
-            System.out.println("===================================");
+            Time.setValuesIntoIntegerList(begin, eind);
+            System.out.println("SelectionSort: " + Time.getTotalTimeNow());
         } while (i <= 4);
         // TODO: Change value to <= 4
         return logString;
