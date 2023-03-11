@@ -2,9 +2,7 @@ import SortAlg.ArrayGenerator;
 import SortAlg.BubbleSort;
 import SortAlg.SelectionSort;
 import Time.Time;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Main {
 
