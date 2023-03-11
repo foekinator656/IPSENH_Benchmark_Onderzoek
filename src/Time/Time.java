@@ -16,6 +16,7 @@ public class Time {
         for (int integer : integers) {
             System.out.printf("Value of second in the bench mark is as follows: %s\n", integer);
             total = total + integer;
+            System.out.println(total);
         }
 
         float avg = total / (integers.size());

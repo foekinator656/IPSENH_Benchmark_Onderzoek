@@ -6,8 +6,6 @@ import Time.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static SortAlg.BubbleSort.run;
-
 public class Main {
 
     public static String runSelectBS(String logString, ArrayGenerator arrayGenerator, DateTimeFormatter dtf) {
