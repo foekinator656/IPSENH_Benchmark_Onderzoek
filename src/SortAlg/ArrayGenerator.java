@@ -32,4 +32,11 @@ public class ArrayGenerator {
             hundredThousandNumbers.add(random.nextLong());
         }
     }
+
+    public void run() {
+        fillHundredNumbers();
+        fillThousandNumbers();
+        fillTenThousandNumbers();
+        fillHundredThousandNumbers();
+    }
 }

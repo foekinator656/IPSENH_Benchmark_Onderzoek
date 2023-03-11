@@ -6,64 +6,52 @@ import java.time.LocalDateTime;
 
 public class Main {
 
-    public static String runSelectBS(String logString, ArrayGenerator arrayGenerator, DateTimeFormatter dtf) {
+    public static String runSelectionSort(String logString, ArrayGenerator arrayGenerator) {
         int i = 0;
         do {
             LocalDateTime begin = LocalDateTime.now();
-            logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.SelectionSort Benchmark!\n",
-                    ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
-                    begin.getMinute(), begin.getSecond());
-            SelectionSort.run(arrayGenerator);
-            LocalDateTime eind = LocalDateTime.now();
+            logString = logString + Time.getTimeAndHour("Start SortAlg.SelectionSort Benchmark!", i, begin, false);
+
+            SelectionSort.runSort(arrayGenerator);
+            LocalDateTime end = LocalDateTime.now();
+
+            Time.setValuesIntoIntegerList(begin, end);
             i++;
-            Time.setValuesIntoIntegerList(begin, eind);
-            System.out.println("SelectionSort: " + Time.getTotalTimeNow());
         } while (i <= 4);
-        // TODO: Change value to <= 4
+
         return logString;
     }
 
-    public static String runBubbleBS(String logString, ArrayGenerator arrayGenerator, DateTimeFormatter dtf) {
+    public static String runBubbleSort(String logString, ArrayGenerator arrayGenerator) {
         int i = 0;
         do {
             LocalDateTime begin = LocalDateTime.now();
-            logString = logString + String.format("(%s: %s/%s/%s %s:%s:%S): Start SortAlg.BubbleSort Benchmark!\n",
-                    ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
-                    begin.getMinute(), begin.getSecond());
-            BubbleSort.run(arrayGenerator);
-            LocalDateTime eind = LocalDateTime.now();
+            logString = logString + Time.getTimeAndHour("Start SortAlg.BubbleSort Benchmark!", i, begin, false);
+
+            BubbleSort.runSort(arrayGenerator);
+            LocalDateTime end = LocalDateTime.now();
+
+            Time.setValuesIntoIntegerList(begin, end);
             i++;
-            Time.setValuesIntoIntegerList(begin, eind);
-            System.out.println("SelectionSort: " + Time.getTotalTimeNow());
         } while (i <= 4);
-        // TODO: Change value to <= 4
+
         return logString;
     }
 
+    // TODO: Fix that you can have an input from user through terminal for how many runs.
     public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
         ArrayGenerator arrayGenerator = new ArrayGenerator();
         LocalDateTime startBenchmark = LocalDateTime.now();
-        String logString = String.format("(%s/%s/%s %s:%s:%S): Benchmarking starting...!\n\n", startBenchmark.getYear(),
-                startBenchmark.getMonthValue(), startBenchmark.getDayOfMonth(), startBenchmark.getHour(),
-                startBenchmark.getMinute(), startBenchmark.getSecond());
+        String logString = Time.getTimeAndHour("Benchmarking starting...!", 0, startBenchmark, true) + "\n";
 
-        arrayGenerator.fillHundredNumbers();
-        arrayGenerator.fillThousandNumbers();
-        arrayGenerator.fillTenThousandNumbers();
-        arrayGenerator.fillHundredThousandNumbers();
+        arrayGenerator.run();
 
-        logString = runSelectBS(logString, arrayGenerator, dtf);
-//        logString = runBubbleBS(logString, arrayGenerator, dtf);
+        logString = runSelectionSort(logString, arrayGenerator) + "\n";
+        logString = runBubbleSort(logString, arrayGenerator);
 
-        System.out.println("The average time of the run is: " + Time.getAverageTime() + "\n");
-        System.out.println("The format of the end of the benchmark is: " + Time.getTotalTimeNow() + "\n");
-
-        logString = logString + "Total time of benchmark is: " + Time.getTotalTimeNow() + "!\n";
-
-        logString = logString + "Average time is the following: " + Time.getAverageTime() + "\n";
+        logString = logString + "\n" + Time.getTimeAndHour(( "Average time is the following: " + Time.getAverageTime()), 0, startBenchmark, true);
+        logString = logString + Time.getTimeAndHour(("Total time of benchmark is: " + Time.getTotalTimeNow()), 0, startBenchmark, true);
 
         LogFile.fileWriter(logString);
-
     }
 }

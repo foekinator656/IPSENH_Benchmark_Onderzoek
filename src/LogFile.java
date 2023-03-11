@@ -8,6 +8,7 @@ public class LogFile {
 
     static FileWriter myWriter;
 
+    // TODO: All files that are made, should be made in a specific folder.
     public static void fileWriter(String testResult){
         LocalDateTime now = LocalDateTime.now();
         String date = String.format("%s_%s_%s", now.getYear(), now.getMonthValue(), now.getDayOfMonth());

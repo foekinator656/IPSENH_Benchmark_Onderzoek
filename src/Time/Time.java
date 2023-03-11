@@ -16,9 +16,7 @@ public class Time {
     public static String getAverageTime() {
         float total = 0;
 
-        for (int integer : integers) {
-            total = total + integer;
-        }
+        for (int integer : integers) total = total + integer;
 
         float avg = total / (integers.size());
 
@@ -28,12 +26,9 @@ public class Time {
     public static String getTotalTimeNow() {
         int hour = 0;
         int minute = 0;
-        float second = 0;
+        int second = 0;
 
-        for (int integer : integers) {
-            second = second + integer;
-        }
-
+        for (int integer : integers) second = second + integer;
         if (second >= 60) {
             minute = minute + 1;
             second = second - 60;
@@ -44,5 +39,17 @@ public class Time {
         }
 
         return String.format("%s uur, %s minuten, %s seconden", hour, minute, second);
+    }
+
+    public static String getTimeAndHour(String value, int i, LocalDateTime begin, boolean algorithm) {
+        if (!algorithm) {
+            return String.format("(%s: %s/%s/%s %s:%s:%s): %s\n",
+                    ""+i+"", begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
+                    begin.getMinute(), begin.getSecond(), value);
+        } else {
+            return String.format("(%s/%s/%s %s:%s:%s): %s\n",
+                    begin.getYear(), begin.getMonthValue(), begin.getDayOfMonth(), begin.getHour(),
+                    begin.getMinute(), begin.getSecond(), value);
+        }
     }
 }

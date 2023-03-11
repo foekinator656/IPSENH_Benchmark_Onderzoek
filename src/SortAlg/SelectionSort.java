@@ -21,7 +21,7 @@ public class SelectionSort {
         }
     }
 
-    public static void run(ArrayGenerator arrayGenerator) {
+    public static void runSort(ArrayGenerator arrayGenerator) {
         ArrayList<Long> tempArray = arrayGenerator.hundredNumbers;
         sort(tempArray);
         tempArray = arrayGenerator.thousandNumbers;
