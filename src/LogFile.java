@@ -14,7 +14,18 @@ public class LogFile {
         String fileName = String.format("Benchmark_IPSENH_%s.txt", date);
         int value = 0;
         try {
-            myWriter = new FileWriter(String.format("Benchmark_IPSENH_%s.txt", date));
+            while (Files.exists(Path.of(fileName))) {
+                value++;
+                int lastIndex = fileName.lastIndexOf("(");
+                if (lastIndex != -1) {
+                    String prefix = fileName.substring(0, lastIndex);
+                    fileName = String.format("%s(%d)", prefix, value);
+                } else {
+                    fileName = String.format("%s(%d)", fileName, value);
+                }
+            }
+
+            myWriter = new FileWriter(fileName);
             myWriter.append(testResult);
             myWriter.close();
         } catch (IOException e) {

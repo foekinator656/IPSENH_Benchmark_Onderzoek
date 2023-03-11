@@ -56,13 +56,12 @@ public class Main {
         arrayGenerator.fillHundredThousandNumbers();
 
         logString = runSelectBS(logString, arrayGenerator, dtf);
-        logString = runBubbleBS(logString, arrayGenerator, dtf);
+//        logString = runBubbleBS(logString, arrayGenerator, dtf);
 
-        LocalDateTime endBenchmark = LocalDateTime.now();
+        System.out.println("The average time of the run is: " + Time.getAverageTime() + "\n");
+        System.out.println("The format of the end of the benchmark is: " + Time.getTotalTimeNow() + "\n");
 
-        System.out.println("The format of the end of the benchmark is: " + dtf.format(endBenchmark) + "\n");
-
-        logString = logString + "Total time of benchmark is: " + Time.getTotalTimeNow(startBenchmark, endBenchmark) + "!\n";
+        logString = logString + "Total time of benchmark is: " + Time.getTotalTimeNow() + "!\n";
 
         logString = logString + "Average time is the following: " + Time.getAverageTime() + "\n";
 
