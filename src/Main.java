@@ -15,6 +15,8 @@ public class Main {
     private static final BubbleSort bubbleSort = new BubbleSort();
     private static final UserController userController = new UserController();
 
+    //TODO: if the benchmarks done ask another run or close program
+    //TODO: check for invalid values, for example: "exits" not working but "exit" working
     public static void main(String[] args) throws InterruptedException {
         LocalDateTime start = LocalDateTime.now();
         String logString = TimeController.getTimeAndHour("Benchmarking starting...!", 0, start, true) + "\n";
