@@ -1,20 +1,23 @@
+package Controllers;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
-public class LogFile {
+public class LogController {
 
-    static FileWriter myWriter;
-
-    // TODO: All files that are made, should be made in a specific folder.
     public static void fileWriter(String testResult){
         LocalDateTime now = LocalDateTime.now();
-        String date = String.format("%s_%s_%s", now.getYear(), now.getMonthValue(), now.getDayOfMonth());
-        String fileName = String.format("Benchmark_IPSENH_%s.txt", date);
+        String date = String.format("%s-%s-%s", now.getYear(), now.getMonthValue(), now.getDayOfMonth());
+        String folderName = "./Output";
+        String fileName = String.format("%s/Benchmark-%s.txt", folderName, date);
         int value = 0;
+
         try {
+            Files.createDirectories(Path.of(folderName));
+
             while (Files.exists(Path.of(fileName))) {
                 value++;
                 int lastIndex = fileName.lastIndexOf("(");
@@ -26,7 +29,7 @@ public class LogFile {
                 }
             }
 
-            myWriter = new FileWriter(fileName);
+            FileWriter myWriter = new FileWriter(fileName);
             myWriter.append(testResult);
             myWriter.close();
         } catch (IOException e) {

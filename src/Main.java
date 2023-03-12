@@ -1,7 +1,9 @@
-import SortAlg.ArrayGenerator;
+import Controllers.AnimationController;
+import Controllers.ArrayController;
+import Controllers.LogController;
 import SortAlg.BubbleSort;
 import SortAlg.SelectionSort;
-import Time.Time;
+import Controllers.TimeController;
 import java.time.LocalDateTime;
 
 public class Main {

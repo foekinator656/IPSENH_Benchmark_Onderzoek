@@ -1,16 +1,15 @@
-package SortAlg;
+package Controllers;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ArrayGenerator {
+public class ArrayController {
 
     Random random = new Random();
-
-    ArrayList<Long> hundredNumbers = new ArrayList<>();
-    ArrayList<Long> thousandNumbers = new ArrayList<>();
-    ArrayList<Long> tenThousandNumbers = new ArrayList<>();
-    ArrayList<Long> hundredThousandNumbers = new ArrayList<>();
+    public ArrayList<Long> hundredNumbers = new ArrayList<>();
+    public ArrayList<Long> thousandNumbers = new ArrayList<>();
+    public ArrayList<Long> tenThousandNumbers = new ArrayList<>();
+    public ArrayList<Long> hundredThousandNumbers = new ArrayList<>();
 
     public void fillHundredNumbers(){
         while (hundredNumbers.size() <= 100){

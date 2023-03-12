@@ -28,11 +28,11 @@ public class BubbleSort {
     public static void runSort(ArrayGenerator arrayGenerator) {
         ArrayList<Long> tempArray = arrayGenerator.hundredNumbers;
         sort(tempArray);
-        tempArray = arrayGenerator.thousandNumbers;
+        tempArray = arrayController.thousandNumbers;
         sort(tempArray);
-        tempArray = arrayGenerator.tenThousandNumbers;
+        tempArray = arrayController.tenThousandNumbers;
         sort(tempArray);
-        tempArray = arrayGenerator.hundredThousandNumbers;
+        tempArray = arrayController.hundredThousandNumbers;
         sort(tempArray);
     }
 }
