@@ -1,28 +1,30 @@
 package SortAlg;
 
+import Controllers.ArrayController;
+import Controllers.TimeController;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class SelectionSort {
 
-    public static void sort(ArrayList<Long> arr){
+    public void sort(ArrayList<Long> arr){
         int n = arr.size();
-        // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n-1; i++){
-            // Find the minimum element in unsorted array
+
+        for (int i = 0; i < n-1; i++) {
             int min_idx = i;
             for (int j = i+1; j < n; j++)
                 if (arr.get(j) < arr.get(min_idx))
                     min_idx = j;
-            // Swap the found minimum element with the first
-            // element
+
             Long temp = arr.get(min_idx);
             arr.set(min_idx, arr.get(i));
             arr.set(i, temp);
         }
     }
 
-    public static void runSort(ArrayGenerator arrayGenerator) {
-        ArrayList<Long> tempArray = arrayGenerator.hundredNumbers;
+    public void runSort(ArrayController arrayController) {
+        ArrayList<Long> tempArray = arrayController.hundredNumbers;
         sort(tempArray);
         tempArray = arrayController.thousandNumbers;
         sort(tempArray);
@@ -30,5 +32,22 @@ public class SelectionSort {
         sort(tempArray);
         tempArray = arrayController.hundredThousandNumbers;
         sort(tempArray);
+    }
+
+    public String run(String logString, ArrayController arrayController, int value) {
+        int i = 0;
+
+        do {
+            LocalDateTime start = LocalDateTime.now();
+            logString = logString + TimeController.getTimeAndHour("Start SortAlg.SelectionSort Benchmark!", value, start, false);
+
+            runSort(arrayController);
+
+            LocalDateTime end = LocalDateTime.now();
+            TimeController.setValuesIntoIntegerList(start, end);
+            i++;
+        } while (i <= value);
+
+        return logString;
     }
 }

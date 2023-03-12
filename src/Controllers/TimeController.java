@@ -3,7 +3,8 @@ package Controllers;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Time {
+public class TimeController {
+
     public static ArrayList<Integer> integers = new ArrayList<>();
 
     public static void setValuesIntoIntegerList(LocalDateTime start, LocalDateTime end) {

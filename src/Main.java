@@ -5,55 +5,60 @@ import SortAlg.BubbleSort;
 import SortAlg.SelectionSort;
 import Controllers.TimeController;
 import java.time.LocalDateTime;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
 
-    public static String runSelectionSort(String logString, ArrayGenerator arrayGenerator) {
-        int i = 0;
+    public static void main(String[] args) throws InterruptedException {
+        final AtomicBoolean isSortingRunning = new AtomicBoolean(true);
+        AnimationController animationController = new AnimationController();
+        ArrayController arrayController = new ArrayController();
+        SelectionSort selectionSort = new SelectionSort();
+        BubbleSort bubbleSort = new BubbleSort();
+        Scanner scanner = new Scanner(System.in);
+        LocalDateTime start = LocalDateTime.now();
+        String logString = TimeController.getTimeAndHour("Benchmarking starting...!", 0, start, true) + "\n";
+
+        int value;
         do {
-            LocalDateTime begin = LocalDateTime.now();
-            logString = logString + Time.getTimeAndHour("Start SortAlg.SelectionSort Benchmark!", i, begin, false);
+            System.out.print("Give a value that you want the Algorithms to run with (non-negative): ");
+            value = scanner.nextInt();
+            System.out.println();
 
-            SelectionSort.runSort(arrayGenerator);
-            LocalDateTime end = LocalDateTime.now();
+            if (value < 0 ) System.out.println("\nYou gave an negative value, try again!");
+        } while (value < 0);
 
-            Time.setValuesIntoIntegerList(begin, end);
-            i++;
-        } while (i <= 4);
+        scanner.nextLine();
 
-        return logString;
-    }
+        Thread animationThread = new Thread(() -> {
+            int i = 1;
+            while (isSortingRunning.get()) {
+                animationController.animate(i + " Seconds busy.");
 
-    public static String runBubbleSort(String logString, ArrayGenerator arrayGenerator) {
-        int i = 0;
-        do {
-            LocalDateTime begin = LocalDateTime.now();
-            logString = logString + Time.getTimeAndHour("Start SortAlg.BubbleSort Benchmark!", i, begin, false);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                i++;
+            }
+        });
 
-            BubbleSort.runSort(arrayGenerator);
-            LocalDateTime end = LocalDateTime.now();
+        animationThread.start();
+        arrayController.run();
 
-            Time.setValuesIntoIntegerList(begin, end);
-            i++;
-        } while (i <= 4);
+        logString = selectionSort.run(logString, arrayController, value) + "\n";
+        logString = bubbleSort.run(logString, arrayController, value);
 
-        return logString;
-    }
+        LocalDateTime end = LocalDateTime.now();
+        logString = logString + "\n" + TimeController.getTimeAndHour(( "Average time is the following: " + TimeController.getAverageTime()), 0, end, true);
+        logString = logString + TimeController.getTimeAndHour(("Total time of benchmark is: " + TimeController.getTotalTimeNow()), 0, end, true);
 
-    // TODO: Fix that you can have an input from user through terminal for how many runs.
-    public static void main(String[] args) {
-        ArrayGenerator arrayGenerator = new ArrayGenerator();
-        LocalDateTime startBenchmark = LocalDateTime.now();
-        String logString = Time.getTimeAndHour("Benchmarking starting...!", 0, startBenchmark, true) + "\n";
+        isSortingRunning.set(false);
+        animationThread.join();
 
-        arrayGenerator.run();
-
-        logString = runSelectionSort(logString, arrayGenerator) + "\n";
-        logString = runBubbleSort(logString, arrayGenerator);
-
-        logString = logString + "\n" + Time.getTimeAndHour(( "Average time is the following: " + Time.getAverageTime()), 0, startBenchmark, true);
-        logString = logString + Time.getTimeAndHour(("Total time of benchmark is: " + Time.getTotalTimeNow()), 0, startBenchmark, true);
-
-        LogFile.fileWriter(logString);
+        LogController.fileWriter(logString);
+        System.out.println("\n\nFinished!");
     }
 }
