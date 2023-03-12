@@ -1,10 +1,12 @@
 package Controllers;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class AnimationController {
 
     private String lastLine = "";
 
-    public void print(String line) {
+    private void print(String line) {
         if (lastLine.length() > line.length()) {
             String temp = "";
             for (int i = 0; i < lastLine.length(); i++) {
@@ -19,7 +21,7 @@ public class AnimationController {
 
     private byte anim;
 
-    public void animate(String line) {
+    private void animate(String line) {
         switch (anim) {
             case 1:
                 print("Thanks, working now. " + line);
@@ -35,5 +37,21 @@ public class AnimationController {
                 print("Thanks, working now. " + line);
         }
         anim++;
+    }
+
+    public Thread run(AtomicBoolean isSortingRunning) {
+        return new Thread(() -> {
+            int i = 1;
+            while (isSortingRunning.get()) {
+                animate(i + " Seconds busy.");
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                i++;
+            }
+        });
     }
 }

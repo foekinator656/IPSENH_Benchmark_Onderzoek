@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BubbleSort {
 
-    public void sort(ArrayList<Long> arr){
+    private void sort(ArrayList<Long> arr){
         int n = arr.size();
         int i, j;
         int swapCounter = -1;
@@ -29,7 +29,7 @@ public class BubbleSort {
         }
     }
 
-    public void runSort(ArrayController arrayController) {
+    private void runSort(ArrayController arrayController) {
         ArrayList<Long> tempArray = arrayController.hundredNumbers;
         sort(tempArray);
         tempArray = arrayController.thousandNumbers;

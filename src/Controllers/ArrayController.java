@@ -11,22 +11,22 @@ public class ArrayController {
     public ArrayList<Long> tenThousandNumbers = new ArrayList<>();
     public ArrayList<Long> hundredThousandNumbers = new ArrayList<>();
 
-    public void fillHundredNumbers(){
+    private void fillHundredNumbers(){
         while (hundredNumbers.size() <= 100){
             hundredNumbers.add(random.nextLong());
         }
     }
-    public void fillThousandNumbers(){
+    private void fillThousandNumbers(){
         while (thousandNumbers.size() <= 1000) {
             thousandNumbers.add(random.nextLong());
         }
     }
-    public void fillTenThousandNumbers(){
+    private void fillTenThousandNumbers(){
         while (tenThousandNumbers.size() <= 10000) {
             tenThousandNumbers.add(random.nextLong());
         }
     }
-    public void fillHundredThousandNumbers(){
+    private void fillHundredThousandNumbers(){
         while (hundredThousandNumbers.size() <= 100000) {
             hundredThousandNumbers.add(random.nextLong());
         }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class TimeController {
 
-    public static ArrayList<Integer> integers = new ArrayList<>();
+    private static ArrayList<Integer> integers = new ArrayList<>();
 
     public static void setValuesIntoIntegerList(LocalDateTime start, LocalDateTime end) {
         int second = end.getSecond() - start.getSecond();

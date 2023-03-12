@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class LogController {
 
-    public static void fileWriter(String testResult){
+    public void fileWriter(String testResult){
         LocalDateTime now = LocalDateTime.now();
         String date = String.format("%s-%s-%s", now.getYear(), now.getMonthValue(), now.getDayOfMonth());
         String folderName = "./Output";
