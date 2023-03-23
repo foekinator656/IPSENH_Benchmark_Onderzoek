@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SelectionSort {
 
-    private void sort(ArrayList<Long> arr){
+    private void SS_sort(ArrayList<Long> arr){
         int n = arr.size();
 
         for (int i = 0; i < n-1; i++) {
@@ -25,13 +25,13 @@ public class SelectionSort {
 
     private void runSort(ArrayController arrayController) {
         ArrayList<Long> tempArray = arrayController.hundredNumbers;
-        sort(tempArray);
+        SS_sort(tempArray);
         tempArray = arrayController.thousandNumbers;
-        sort(tempArray);
+        SS_sort(tempArray);
         tempArray = arrayController.tenThousandNumbers;
-        sort(tempArray);
+        SS_sort(tempArray);
         tempArray = arrayController.hundredThousandNumbers;
-        sort(tempArray);
+        SS_sort(tempArray);
     }
 
     public String run(String logString, ArrayController arrayController, int value) {
