@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SelectionSort {
 
-    private void SS_sort(ArrayList<Long> arr){
+    private void sort(ArrayList<Long> arr){
         int n = arr.size();
 
         for (int i = 0; i < n-1; i++) {
@@ -23,15 +23,17 @@ public class SelectionSort {
         }
     }
 
-    private void runSort(ArrayController arrayController) {
-        ArrayList<Long> tempArray = arrayController.hundredNumbers;
-        SS_sort(tempArray);
-        tempArray = arrayController.thousandNumbers;
-        SS_sort(tempArray);
-        tempArray = arrayController.tenThousandNumbers;
-        SS_sort(tempArray);
-        tempArray = arrayController.hundredThousandNumbers;
-        SS_sort(tempArray);
+    private void fillSort(ArrayController arrayController) {
+        ArrayList<Long>[] arrays = new ArrayList[] {
+                arrayController.hundredNumbers,
+                arrayController.thousandNumbers,
+                arrayController.tenThousandNumbers,
+                arrayController.hundredThousandNumbers
+        };
+
+        for (ArrayList<Long> tempArray : arrays) {
+            sort(tempArray);
+        }
     }
 
     public String run(String logString, ArrayController arrayController, int value) {
@@ -41,7 +43,7 @@ public class SelectionSort {
             LocalDateTime start = LocalDateTime.now();
             logString = logString + TimeController.getTimeAndHour("Start SortAlg.SelectionSort Benchmark!", value, start, false);
 
-            runSort(arrayController);
+            fillSort(arrayController);
 
             LocalDateTime end = LocalDateTime.now();
             TimeController.setValuesIntoIntegerList(start, end);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BubbleSort {
 
-    private void BS_sort(ArrayList<Long> arr){
+    private void sort(ArrayList<Long> arr){
         int n = arr.size();
         int i, j;
         int swapCounter = -1;
@@ -29,15 +29,17 @@ public class BubbleSort {
         }
     }
 
-    private void runSort(ArrayController arrayController) {
-        ArrayList<Long> tempArray = arrayController.hundredNumbers;
-        BS_sort(tempArray);
-        tempArray = arrayController.thousandNumbers;
-        BS_sort(tempArray);
-        tempArray = arrayController.tenThousandNumbers;
-        BS_sort(tempArray);
-        tempArray = arrayController.hundredThousandNumbers;
-        BS_sort(tempArray);
+    private void fillSort(ArrayController arrayController) {
+        ArrayList<Long>[] arrays = new ArrayList[] {
+                arrayController.hundredNumbers,
+                arrayController.thousandNumbers,
+                arrayController.tenThousandNumbers,
+                arrayController.hundredThousandNumbers
+        };
+
+        for (ArrayList<Long> tempArray : arrays) {
+            sort(tempArray);
+        }
     }
 
     public String run(String logString, ArrayController arrayController, int value) {
@@ -47,7 +49,7 @@ public class BubbleSort {
             LocalDateTime start = LocalDateTime.now();
             logString = logString + TimeController.getTimeAndHour("Start SortAlg.BubbleSort Benchmark!", i, start, false);
 
-            runSort(arrayController);
+            fillSort(arrayController);
 
             LocalDateTime end = LocalDateTime.now();
             TimeController.setValuesIntoIntegerList(start, end);

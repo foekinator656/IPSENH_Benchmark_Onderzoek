@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class AnimationController {
 
     private String lastLine = "";
+    private byte anim;
 
     private void print(String line) {
         if (lastLine.length() > line.length()) {
@@ -18,8 +19,6 @@ public class AnimationController {
         System.out.print("\r" + line);
         lastLine = line;
     }
-
-    private byte anim;
 
     private void animate(String line) {
         switch (anim) {

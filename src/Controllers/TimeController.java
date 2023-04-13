@@ -7,6 +7,10 @@ public class TimeController {
 
     private static ArrayList<Integer> integers = new ArrayList<>();
 
+    public static void resetIntegers() {
+        integers = new ArrayList<>();
+    }
+
     public static void setValuesIntoIntegerList(LocalDateTime start, LocalDateTime end) {
         int second = end.getSecond() - start.getSecond();
 
@@ -34,6 +38,7 @@ public class TimeController {
             minute = minute + 1;
             second = second - 60;
         }
+
         if (minute >= 60) {
             hour = hour + 1;
             minute = minute - 60;

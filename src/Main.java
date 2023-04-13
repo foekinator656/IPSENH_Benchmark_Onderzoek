@@ -3,6 +3,7 @@ import SortAlg.BubbleSort;
 import SortAlg.SelectionSort;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
     private static final SelectionSort selectionSort = new SelectionSort();
     private static final BubbleSort bubbleSort = new BubbleSort();
     private static final UserController userController = new UserController();
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
         boolean runAgain = true;
@@ -23,14 +25,18 @@ public class Main {
             System.out.println();
             int value = userController.userInput();
 
-        animationController.run(isSortingRunning).start();
-        arrayController.run();
+            animationController.run(isSortingRunning).start();
+            arrayController.run();
 
-        logString = selectionSort.run(logString, arrayController, value) + "\n";
-        logString = bubbleSort.run(logString, arrayController, value);
-        LocalDateTime end = LocalDateTime.now();
-        logString = logString + "\n" + TimeController.getTimeAndHour(( "Average time is the following: " + TimeController.getAverageTime()), 0, end, true);
-        logString = logString + TimeController.getTimeAndHour(("Total time of benchmark is: " + TimeController.getTotalTimeNow()), 0, end, true);
+            logString = selectionSort.run(logString, arrayController, value) + "\n";
+            logString = bubbleSort.run(logString, arrayController, value);
+            LocalDateTime end = LocalDateTime.now();
+            logString = logString + "\n" + TimeController.getTimeAndHour(
+                    ( "Average time is the following: " + TimeController.getAverageTime()),
+                    0, end, true);
+            logString = logString + TimeController.getTimeAndHour(
+                    ("Total time of benchmark is: " + TimeController.getTotalTimeNow()),
+                    0, end, true);
 
             isSortingRunning.set(false);
             animationController.run(isSortingRunning).join();
